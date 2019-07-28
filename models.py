@@ -15,3 +15,8 @@ class Rating(Base):
         return "<Rating(device='{}', date='{}', rating='{}'>".format(self.device,
                                                                     self.date,
                                                                     self.rating)
+
+    def __str__(self):
+        return "<Rating(device='{}', date='{}', rating='{}'>".format(self.device,
+                                                                    self.date,
+                                                                    self.rating)

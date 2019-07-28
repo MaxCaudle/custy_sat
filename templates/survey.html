@@ -1,0 +1,46 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+        $(function() {
+          $('a#1').bind('click', function() {
+            $.getJSON('/background_add_1',
+                function() {
+            });
+            return data;
+          });
+        });
+</script>
+
+<script type=text/javascript>
+        $(function() {
+          $('a#2').bind('click', function() {
+            $.getJSON('/background_add_2',
+                function() {
+            });
+            return data;
+          });
+        });
+</script>
+
+<script type=text/javascript>
+        $(function() {
+          $('a#3').bind('click', function() {
+            $.getJSON('/background_add_3',
+                function() {
+            });
+            return data;
+          });
+        });
+</script>
+
+
+<div class='container'>
+    <h3>How was your experience today?</h3>
+        <form>
+
+            <a href=# id=1><button class='btn btn-default' value="1">1</button></a>
+            <a href=# id=2><button class='btn btn-default' value="2">2</button></a>
+            <a href=# id=3><button class='btn btn-default' value="3">3</button></a>
+        </form>
+
+</div>
+
