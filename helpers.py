@@ -13,7 +13,7 @@ def _recreate_database():
 def get_session():
     engine = create_engine(DATABASE_URI)
     Session = sessionmaker(bind=engine)
-    return Session
+    return engine, Session
 
 def add_rating(Session, rating, rating_time=None):
     session = Session()
@@ -33,7 +33,7 @@ def add_data(n):
     from random import randrange
     import time
 
-    Session = get_session()
+    engine, Session = get_session()
 
     start_timestamp = time.mktime(time.strptime('Jun 1 2019  01:33:00', '%b %d %Y %I:%M:%S'))
     end_timestamp = time.mktime(time.strptime('Aug 1 2019  12:33:00', '%b %d %Y %I:%M:%S'))
