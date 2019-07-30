@@ -7,7 +7,7 @@ from helpers import add_rating, get_session
 
 app = Flask(__name__)
 
-Session = get_session()
+engine, Session = get_session()
 
 @app.route('/')
 def buttons():
