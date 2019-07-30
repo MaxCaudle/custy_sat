@@ -1,7 +1,5 @@
 from flask import Flask, render_template
 
-
-
 from helpers import add_rating, get_session
 
 
@@ -18,7 +16,6 @@ def buttons():
 def background_add_1():
     print("calling add 1")
     add_rating(Session, 1)
-
     return "nothing"
 
 @app.route('/background_add_2')
@@ -32,7 +29,6 @@ def background_add_3():
     print("calling add 3")
     add_rating(Session, 3)
     return "nothing"
-
 
 if __name__ == "__main__":
     app.run()
