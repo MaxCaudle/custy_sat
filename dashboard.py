@@ -1,7 +1,5 @@
 from dashboard_helpers import get_df_from_sql, weekly_bar_chart
 
-import datetime
-
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
