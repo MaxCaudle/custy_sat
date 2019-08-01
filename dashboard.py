@@ -10,7 +10,8 @@ from dash.dependencies import Input, Output
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 locations = get_locations()
-
+data = Data(locations)
+data.make_all_weeklys()
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 app.layout = html.Div(
@@ -29,10 +30,8 @@ app.layout = html.Div(
 )
 
 @app.callback(Output('live-update-graph', 'figure'),
-              [Input('interval-component', 'n_intervals'),
-               Input('location_selector', 'value')])
-def update_graph_live(n, location):
-    data = Data(locations)
+              [Input('location_selector', 'value')])
+def update_graph_live(location):
     # Create the graph with subplots
     fig = subplots(rows=1, cols=1, vertical_spacing=0.2,
                    subplot_titles=("Previous 7 Days' Performance",))
@@ -43,12 +42,22 @@ def update_graph_live(n, location):
     fig['layout']['legend'] = {'x': 0, 'y': 1, 'xanchor': 'left'}
 
     df_weekly = data.df_week[location]
+    print(data.test)
     fig.append_trace(go.Bar(name='Bad', x=df_weekly.index, y=df_weekly['1']), 1, 1)
     fig.append_trace(go.Bar(name='Fair', x=df_weekly.index, y=df_weekly['2']), 1, 1)
     fig.append_trace(go.Bar(name='Good', x=df_weekly.index, y=df_weekly['3']), 1, 1)
 
     return fig
 
+@app.callback(Output('interval-component', 'interval'),
+              [Input('interval-component', 'n_intervals')])
+def update_graph_live(n):
+    global data
+    print('\nliveupdate')
+    data.get_df_from_sql()
+    data.make_all_weeklys()
+    data.test = "set"
+    return 60*1000
 
 if __name__ == '__main__':
     app.run_server(debug=True, port = 8000)

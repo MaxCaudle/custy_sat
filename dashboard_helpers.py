@@ -23,7 +23,8 @@ class Data:
 
         self.df = self.get_df_from_sql()
         self.locations = locations
-        self.df_week = self.make_all_weeklys()
+        self.df_week = {}
+        self.test = "unset"
 
 
 
@@ -45,8 +46,9 @@ class Data:
         return df_week
 
     def make_all_weeklys(self):
+        print('making make all weeklys')
         weekly_dict = {'all': self.weekly_bar_chart(self.df)}
         for location in self.locations:
             weekly_dict[location] = self.weekly_bar_chart(self.df[self.df['device'] == location])
 
-        return weekly_dict
+        self.df_week = weekly_dict
