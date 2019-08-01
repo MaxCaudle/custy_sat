@@ -2,18 +2,26 @@ from models import Rating
 from config import DATABASE_URI
 
 import datetime
+import numpy as np
+
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+
 
 def _recreate_database():
+    engine, Session = get_session()
+    Base = declarative_base()
     Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
+
 
 def get_session():
     engine = create_engine(DATABASE_URI)
     Session = sessionmaker(bind=engine)
     return engine, Session
+
 
 def add_rating(Session, rating, rating_time=None):
     session = Session()
@@ -27,6 +35,14 @@ def add_rating(Session, rating, rating_time=None):
     session.add(rating)
     session.commit()
     session.close()
+
+
+def generate_data(n):
+    engine, Session = get_session()
+    for i in range(n):
+        date = datetime.datetime.now() - datetime.timedelta(seconds=np.random.randint(31*24*60*60))
+        add_rating(Session, np.random.randint(0, 4), date)
+
 
 def add_data(n):
     import numpy as np
