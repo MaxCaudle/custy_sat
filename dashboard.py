@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 from dashboard_helpers import Data, get_locations
 import datetime
->>>>>>> d60105b944916b291c29d52c6362818d7a71e195
 
 import dash
 import dash_core_components as dcc
@@ -44,13 +42,10 @@ def update_graph_live(n, location):
     }
     fig['layout']['legend'] = {'x': 0, 'y': 1, 'xanchor': 'left'}
 
-<<<<<<< HEAD
     df_weekly = data.df_week[location]
     fig.append_trace(go.Bar(name='Bad', x=df_weekly.index, y=df_weekly['1']), 1, 1)
     fig.append_trace(go.Bar(name='Fair', x=df_weekly.index, y=df_weekly['2']), 1, 1)
     fig.append_trace(go.Bar(name='Good', x=df_weekly.index, y=df_weekly['3']), 1, 1)
-======+
->>>>>>> d60105b944916b291c29d52c6362818d7a71e195
 
     return fig
 
