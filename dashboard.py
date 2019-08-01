@@ -27,16 +27,18 @@ def update_graph_live(n):
     df_weekly = weekly_bar_chart(df)
 
     # Create the graph with subplots
-    fig = subplots(rows=1, cols=1, vertical_spacing=0.2)
+    fig = subplots(rows=1, cols=1, vertical_spacing=0.2,
+                   subplot_titles=("Previous 7 Days' Performance",))
+
     fig['layout']['margin'] = {
-        'l': 30, 'r': 10, 'b': 30, 't': 10
+        'l': 30, 'r': 10, 'b': 30, 't': 20
     }
     fig['layout']['legend'] = {'x': 0, 'y': 1, 'xanchor': 'left'}
 
+    fig.append_trace(go.Bar(name='Bad', x=df_weekly.index, y=df_weekly['1'], marker={'color': '#d62728'}), 1, 1)
+    fig.append_trace(go.Bar(name='Fair', x=df_weekly.index, y=df_weekly['2'], marker={'color': '#ff7f0e'}), 1, 1)
+    fig.append_trace(go.Bar(name='Good', x=df_weekly.index, y=df_weekly['3'], marker={'color': '#2ca02c'}), 1, 1)
 
-    fig.append_trace(go.Bar(name='Bad', x=df_weekly.index, y=df_weekly['1']), 1, 1)
-    fig.append_trace(go.Bar(name='Fair', x=df_weekly.index, y=df_weekly['2']), 1, 1)
-    fig.append_trace(go.Bar(name='Good', x=df_weekly.index, y=df_weekly['3']), 1, 1)
 
     return fig
 
