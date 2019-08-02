@@ -41,6 +41,8 @@ class Data:
         week_3 = df_week[df_week['rating'] == 3].groupby(df_week.date.dt.date).count()['id']
         df_week = pd.concat([week_1, week_2, week_3], axis=1, sort=True).fillna(0)
         df_week.columns = ['1', '2', '3']
+        df_week['mean'] = ((df_week['1'] * 1 + df_week['2'] * 2 + df_week['3'] * 3)
+                          /(df_week['1'] + df_week['2'] + df_week['3']))
         return df_week
 
     def make_all_weeklys(self):
@@ -50,3 +52,10 @@ class Data:
             weekly_dict[location] = self.weekly_bar_chart(self.df[self.df['device'] == location])
 
         self.df_week = weekly_dict
+
+def calc_color(num):
+    if num <=1.5:
+        return '#DC143C'
+    elif num <= 2.5:
+        return '#fde500'
+    return '#3CB371'

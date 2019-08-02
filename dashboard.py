@@ -1,4 +1,5 @@
 from dashboard_helpers import Data, get_locations
+from dashboard_graphs import past_7_days
 import datetime
 
 import dash
@@ -42,10 +43,7 @@ def update_graph_live(location):
     }
     fig['layout']['legend'] = {'x': 0, 'y': 1, 'xanchor': 'left'}
 
-    df_weekly = data.df_week[location]
-    fig.append_trace(go.Bar(name='Bad', x=df_weekly.index, y=df_weekly['1']), 1, 1)
-    fig.append_trace(go.Bar(name='Fair', x=df_weekly.index, y=df_weekly['2']), 1, 1)
-    fig.append_trace(go.Bar(name='Good', x=df_weekly.index, y=df_weekly['3']), 1, 1)
+    fig = past_7_days(data, location, fig)
 
     return fig
 
