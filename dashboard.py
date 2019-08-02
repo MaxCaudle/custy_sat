@@ -11,6 +11,7 @@ from dash.dependencies import Input, Output
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 locations = get_locations()
 data = Data(locations)
+data.get_df_from_sql()
 data.make_all_weeklys()
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
@@ -42,7 +43,6 @@ def update_graph_live(location):
     fig['layout']['legend'] = {'x': 0, 'y': 1, 'xanchor': 'left'}
 
     df_weekly = data.df_week[location]
-    print(data.test)
     fig.append_trace(go.Bar(name='Bad', x=df_weekly.index, y=df_weekly['1']), 1, 1)
     fig.append_trace(go.Bar(name='Fair', x=df_weekly.index, y=df_weekly['2']), 1, 1)
     fig.append_trace(go.Bar(name='Good', x=df_weekly.index, y=df_weekly['3']), 1, 1)
@@ -53,7 +53,6 @@ def update_graph_live(location):
               [Input('interval-component', 'n_intervals')])
 def update_graph_live(n):
     global data
-    print('\nliveupdate')
     data.get_df_from_sql()
     data.make_all_weeklys()
     data.test = "set"
