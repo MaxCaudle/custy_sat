@@ -31,7 +31,7 @@ def past_7_days(data, location, fig):
     fig.append_trace(twos, 1, 1)
     fig.append_trace(threes, 1, 1)
     fig.append_trace(average, 1, 1)
-    
+
     fig['data'][-1].update(yaxis='y2')
     fig.layout.update(yaxis2 = {'range':[0,3],
                                 'side': 'right',
