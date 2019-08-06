@@ -12,8 +12,9 @@ class Data:
 
         self.df = None
         self.locations = locations
-        self.df_week = {}
-        self.days_data = None
+        self.week_dict = {}
+        self.days_dict = None
+
         self.get_df_from_sql()
         self.make_all_weeklys()
         self.make_pie_chart()
@@ -36,12 +37,12 @@ class Data:
         return df_week
 
     def make_all_weeklys(self):
-        self.df_week = None
+        self.week_dict = None
         weekly_dict = {'all': self.weekly_bar_chart(self.df)}
         for location in self.locations:
             weekly_dict[location] = self.weekly_bar_chart(self.df[self.df['device'] == location])
 
-        self.df_week = weekly_dict
+        self.week_dict = weekly_dict
 
     def make_days_pie(self, sub_df):
         data = sub_df[sub_df['date'].dt.date == datetime.date(datetime.now())]
@@ -54,4 +55,5 @@ class Data:
         for location in self.locations:
             days_data = self.make_days_pie(self.df[self.df['device'] == location])
             days_dict[location] = days_data
+        self.days_dict = days_dict
 

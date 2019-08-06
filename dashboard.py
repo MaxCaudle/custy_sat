@@ -1,6 +1,6 @@
 from Data import Data
 from dashboard_helpers import get_locations
-from dashboard_graphs import past_7_days
+from dashboard_graphs import past_7_days, piechart
 import datetime
 
 import dash
@@ -36,7 +36,8 @@ app.layout = html.Div(
 def update_graph_live(location):
     # Create the graph with subplots
     fig = subplots(rows=1, cols=2, vertical_spacing=0.2,
-                   subplot_titles=("Previous 7 Days' Performance",))
+                   subplot_titles=("Previous 7 Days' Performance", "Today's Ratings"),
+                   )
 
     fig['layout']['margin'] = {
         'l': 40, 'r': 50, 'b': 30, 't': 20
@@ -44,6 +45,7 @@ def update_graph_live(location):
     fig['layout']['legend'] = {'x': 0, 'y': 1, 'xanchor': 'left'}
 
     fig = past_7_days(data, location, fig)
+    # fig = piechart(data, location, fig)
 
     return fig
 

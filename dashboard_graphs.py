@@ -4,7 +4,7 @@ import plotly.graph_objs as go
 
 
 def past_7_days(data, location, fig):
-    df_weekly = data.df_week[location]
+    df_weekly = data.week_dict[location]
     ones = go.Bar(name='Bad',
                   x=df_weekly.index,
                   y=df_weekly['1'],
@@ -43,4 +43,10 @@ def past_7_days(data, location, fig):
 
 
 def piechart(data, location, fig):
-    pass
+    pie = go.Pie(labels=[1, 2, 3],
+                 values=data.days_dict[location],
+                 marker={'colors': [calc_color(1), calc_color(2), calc_color(3)]},
+                 textinfo='label',
+                 domain={'x': [0.0, 0.33], 'y': [0.0, 0.33]})
+    fig.append_trace(pie, 1, 2)
+    return fig
