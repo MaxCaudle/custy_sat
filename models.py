@@ -4,6 +4,7 @@ from sqlalchemy import Column, Integer, String, DateTime
 
 Base = declarative_base()
 
+
 class Rating(Base):
     __tablename__ = 'ratings'
     id = Column(Integer, primary_key=True)
@@ -13,10 +14,10 @@ class Rating(Base):
 
     def __repr__(self):
         return "<Rating(device='{}', date='{}', rating='{}'>".format(self.device,
-                                                                    self.date,
-                                                                    self.rating)
+                                                                     self.date,
+                                                                     self.rating)
 
     def __str__(self):
         return "<Rating(device='{}', date='{}', rating='{}'>".format(self.device,
-                                                                    self.date,
-                                                                    self.rating)
+                                                                     self.date,
+                                                                     self.rating)
