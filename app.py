@@ -31,5 +31,5 @@ def background_add_3():
     return "nothing"
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0')
 
