@@ -4,7 +4,7 @@
 <script type=text/javascript>
         $(document).ready(function() {
           $('#1').on('click', function() {
-            $.getJSON('/background_add_1',
+            $.getJSON('/background_add_1?location='.concat('{{  location  }}'),
                 function() {
 
             });

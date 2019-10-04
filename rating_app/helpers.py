@@ -1,4 +1,4 @@
-from models import Rating
+from database.models import Rating
 from config import DATABASE_URI
 
 import datetime
@@ -23,11 +23,11 @@ def get_session():
     return engine, Session
 
 
-def add_rating(Session, rating, rating_time=None):
+def add_rating(Session, rating, rating_time=None, location="test"):
     session = Session()
     if not rating_time:
         rating_time = datetime.datetime.now()
-    rating = Rating(device = "test",
+    rating = Rating(device = location,
                     date = rating_time,
                     rating = rating
                     )

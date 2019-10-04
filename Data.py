@@ -1,4 +1,4 @@
-from helpers import get_session
+from rating_app.helpers import get_session
 import numpy as np # is any good data project complete without at least one call to np?
 import pandas as pd
 from datetime import datetime, timedelta
