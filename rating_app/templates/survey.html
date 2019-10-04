@@ -1,48 +1,18 @@
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
-<script src="static/ajax.js"></script>
-<script type=text/javascript>
-        $(document).ready(function() {
-          $('#1').on('click', function() {
-            $.getJSON('/background_add_1?location='.concat('{{  location  }}'),
-                function() {
-
-            });
-            return "nothing";
-          });
-        });
-</script>
-
-<script type=text/javascript>
-        $(document).ready(function() {
-          $('#2').on('click', function() {
-            $.getJSON('/background_add_2',
-                function() {
-            });
-            return "nothing";
-          });
-        });
-</script>
-
-<script type=text/javascript>
-        $(document).ready(function() {
-          $('#3').on('click', function() {
-            $.getJSON('/background_add_3',
-                function() {
-            });
-            return "nothing";
-          });
-        });
-</script>
-
-
 <div class='container'>
     <h3>How was your experience today?</h3>
-        <form>
+        <form method = "POST">
 
-            <button class='btn btn-default' value="1" id=1><img src="static/thumbs_down.png" title="Thumbs Down"></button>
-            <button class='btn btn-default' value="2" id=2><img src="static/thumbs_side.png" title="Thumbs Sideways"></button>
-            <button class='btn btn-default' value="3" id=3><img src="static/thumbs_up.png" title="Thumbs Up"></button>
+            <button class='btn btn-default' value="1" id=1 name="rating">
+                <img src="static/thumbs_down.png" title="Thumbs Down"></button>
+
+            <button class='btn btn-default' value="2" id=2 name="rating">
+                <img src="static/thumbs_side.png" title="Thumbs Sideways"></button>
+
+            <button class='btn btn-default' value="3" id=3 name="rating">
+                <img src="static/thumbs_up.png" title="Thumbs Up"></button>
+
         </form>
 
 </div>
